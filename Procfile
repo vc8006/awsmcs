@@ -1,0 +1,1 @@
+web: gunicorn ajaxcrud.wsgi --log-file -
