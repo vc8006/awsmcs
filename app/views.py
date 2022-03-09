@@ -45,6 +45,8 @@ def index(request):
 
 @login_required
 def home(request,id):
+    print("home function run hua matlab ab backup lena hai")
+    os.system('python3 manage.py dumpdata > backup.json')
     form = StudentRegistration()
     data = User.objects.filter(booking__id=id).order_by('-id')
     myfilter = OrderFilter(request.GET,queryset=data)

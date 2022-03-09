@@ -1,0 +1,1 @@
+[{"model": "app.bookings", "pk": 1, "fields": {"name": "Mahendra and Mahendra", "email": "sendhwamadhurcourierservices@gmail.com", "s_no": 1}}, {"model": "app.user", "pk": 1, "fields": {"sno": 1, "date": "2022-03-09", "docket_no": "1", "name": "test", "weight": 0.0, "city": "mumbai", "price": 120, "booking": 1}}]
