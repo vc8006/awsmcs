@@ -16,13 +16,36 @@ from io import BytesIO
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
+
+import sys
+from django.core.management import call_command
+
+from datetime import datetime
 import os
+from django.core.mail import send_mail,EmailMessage
 
 def sign_in(request):
     if request.method=='POST':
         fm = AuthenticationForm(request=request,data=request.POST)
         print(fm)
         if fm.is_valid():
+            print("home function run hua matlab ab backup lena hai")
+            # os.system('python3 manage.py dumpdata > backup.json')
+            sysout = sys.stdout
+            sys.stdout = open('newjsoncommand.txt','w')
+            call_command('dumpdata')
+            sys.stdout = sysout
+            # print(sysout)
+            # print(sys.stdout)
+            mail= EmailMessage(
+                'backup on ' + str(datetime.now()), #subject
+                'yeh data hai aaj ka', #message
+                'vedchourasia08@gmail.com', #from email
+                ['vedantchourasia08@gmail.com'], #to mail
+            )
+            mail.attach_file('newjsoncommand.txt')
+            # mail.attach('backup.txt','newjsoncommand.txt','html/text')
+            mail.send()
             uname = fm.cleaned_data['username']
             upass = fm.cleaned_data['password']
             user = authenticate(username=uname,password=upass)
@@ -43,20 +66,9 @@ def index(request):
     form = BookingRegistration()
     return render(request,"app/index.html",{'form':form,'data':data})
 
-import sys
-from django.core.management import call_command
-
 
 @login_required
 def home(request,id):
-    print("home function run hua matlab ab backup lena hai")
-    # os.system('python3 manage.py dumpdata > backup.json')
-    sysout = sys.stdout
-    sys.stdout = open('newjsoncommand.json','w')
-    call_command('dumpdata')
-    sys.stdout = sysout
-
-
     form = StudentRegistration()
     data = User.objects.filter(booking__id=id).order_by('-id')
     myfilter = OrderFilter(request.GET,queryset=data)
