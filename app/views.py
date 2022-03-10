@@ -23,6 +23,10 @@ from django.core.management import call_command
 from datetime import datetime
 import os
 from django.core.mail import send_mail,EmailMessage
+import io
+
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 def sign_in(request):
     if request.method=='POST':
@@ -31,10 +35,15 @@ def sign_in(request):
         if fm.is_valid():
             print("home function run hua matlab ab backup lena hai")
             # os.system('python3 manage.py dumpdata > backup.json')
-            sysout = sys.stdout
-            sys.stdout = open('newjsoncommand.txt','w')
-            call_command('dumpdata')
-            sys.stdout = sysout
+            # sysout = sys.stdout
+            # sys.stdout = open('newjsoncommand.txt','w')
+            # call_command('dumpdata')
+            # sys.stdout = sysout
+
+            with io.StringIO() as out:
+                call_command('dumpdata', stdout=out)
+                json_data = out.getvalue()
+                # print(out.getvalue())
             # print(sysout)
             # print(sys.stdout)
             mail= EmailMessage(
@@ -43,8 +52,8 @@ def sign_in(request):
                 'vedchourasia08@gmail.com', #from email
                 ['vedantchourasia08@gmail.com'], #to mail
             )
-            mail.attach_file('newjsoncommand.txt')
-            # mail.attach('backup.txt','newjsoncommand.txt','html/text')
+            # mail.attach_file('newjsoncommand.txt')
+            mail.attach('backup.txt',json_data,'html/text')
             mail.send()
             uname = fm.cleaned_data['username']
             upass = fm.cleaned_data['password']
