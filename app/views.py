@@ -43,10 +43,20 @@ def index(request):
     form = BookingRegistration()
     return render(request,"app/index.html",{'form':form,'data':data})
 
+import sys
+from django.core.management import call_command
+
+
 @login_required
 def home(request,id):
     print("home function run hua matlab ab backup lena hai")
-    os.system('python3 manage.py dumpdata > backup.json')
+    # os.system('python3 manage.py dumpdata > backup.json')
+    sysout = sys.stdout
+    sys.stdout = open('newjsoncommand.json','w')
+    call_command('dumpdata')
+    sys.stdout = sysout
+
+
     form = StudentRegistration()
     data = User.objects.filter(booking__id=id).order_by('-id')
     myfilter = OrderFilter(request.GET,queryset=data)
