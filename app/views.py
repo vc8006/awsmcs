@@ -20,13 +20,44 @@ from xhtml2pdf import pisa
 import sys
 from django.core.management import call_command
 
+import csv
+
 from datetime import datetime
 import os
 from django.core.mail import send_mail,EmailMessage
 import io
-
+from io import StringIO
+import pandas
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+def export_csv(request):
+    mail= EmailMessage(
+                'backup on ' + str(datetime.now()), #subject
+                'yeh data hai aaj tak ka', #message
+                'vedchourasia08@gmail.com', #from email
+                ['vedantchourasia08@gmail.com'], #to mail
+            )
+
+    for book in Bookings.objects.all():
+        # response = HttpResponse(content_type='text/csv')
+        # response['Content-Disposition'] = f'attachment; filename={book.name}' + str(datetime.now()) + '.csv'
+        csvfile = StringIO()
+        writer = csv.writer(csvfile)
+        data = User.objects.filter(booking__id=book.id).order_by('id')
+        writer.writerow(['Booking Name',book.name,book.email])
+        writer.writerow(['sno','date','docket_no','name','weight','city','price'])
+
+        for dat in data:
+            writer.writerow([dat.sno,dat.date,dat.docket_no,dat.name,dat.weight,dat.city,dat.price])
+        mail.attach(f'{book.name}.csv', csvfile.getvalue(), 'text/csv')
+
+    with io.StringIO() as out:
+        call_command('dumpdata', stdout=out)
+        json_data = out.getvalue()
+    mail.attach('backup.txt',json_data,'html/text')
+    mail.send()
+    return HttpResponseRedirect('/')
 
 def sign_in(request):
     if request.method=='POST':
