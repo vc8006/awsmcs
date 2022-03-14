@@ -94,9 +94,9 @@ DATABASES = {
     }
 }
 
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+# import dj_database_url
+# db_from_env = dj_database_url.config(conn_max_age=600)
+# DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -150,4 +150,5 @@ EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'vedchourasia08@gmail.com'
 EMAIL_HOST_PASSWORD = 'pbcwgfkwsehtkhiv'
 EMAIL_USE_TLS = True
+# DATE_INPUT_FORMATS = ['%d-%m-%y']
 # EMAIL_USE_SSL = False
