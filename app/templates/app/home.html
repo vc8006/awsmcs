@@ -48,7 +48,7 @@
   <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">S/no</th>
+            <!-- <th scope="col">S/no</th> -->
             <th scope="col">DATE</th>
             <th scope="col">DOCKET</th>
             <th scope="col">NAME</th>
@@ -61,7 +61,6 @@
     <tbody id="tbody">
       {% for dat in searchresult %}
         <tr>
-            <td>{{dat.id}}</td>
             <td>{{dat.date|date:'Y-m-d'}}</td>
             <td>{{dat.docket_no}}</td>
             <td>{{dat.name}}</td>
@@ -104,7 +103,7 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">S/no</th>
+            <!-- <th scope="col">S/no</th> -->
             <th scope="col">DATE</th>
             <th scope="col">DOCKET</th>
             <th scope="col">NAME</th>
@@ -117,7 +116,6 @@
     <tbody id="tbody">
         {% for dat in data %}
         <tr>
-            <td> {{dat.sno}} </td>
             <td>{{dat.date|date:'Y-m-d'}}</td>
             <td>{{dat.docket_no}}</td>
             <td>{{dat.name}}</td>
