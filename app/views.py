@@ -31,6 +31,39 @@ import pandas
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+@login_required
+def autocomplete_names(request):
+    if 'term' in request.GET:
+        qs = User.objects.filter(name__istartswith=request.GET.get('term'))
+        names = list()
+        set_names = set()
+        for q in qs:
+            set_names.add(q.name)
+
+        for name in set_names:
+            names.append(name)
+        print(names)
+        return JsonResponse(names,safe=False)
+    data = list()
+    return JsonResponse(data,safe=False)
+
+@login_required
+def autocomplete_city(request):
+    if 'term' in request.GET:
+        qs = User.objects.filter(city__istartswith=request.GET.get('term'))
+        cities = list()
+        set_cities = set()
+        for q in qs:
+            set_cities.add(q.city)
+
+        for name in set_cities:
+            cities.append(name)
+        print(cities)
+        return JsonResponse(cities,safe=False)
+    data = list()
+    return JsonResponse(data,safe=False)
+
+        
 def export_csv(request):
     mail= EmailMessage(
                 'backup on ' + str(datetime.now()), #subject

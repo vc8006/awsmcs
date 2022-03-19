@@ -22,6 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index,name="index"),
+    path('get-suggestions/', views.autocomplete_names,name="autocomplete_names"),
+    path('get-suggestions-city/', views.autocomplete_city,name="autocomplete_city"),
     path('export_csv/', views.export_csv,name="csv"),
     path('signin/', views.sign_in,name="login"),
     path('logout/', views.log_out,name="logout"),

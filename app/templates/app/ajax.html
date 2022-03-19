@@ -19,7 +19,7 @@
         console.log("save button clicked")
     output = "";
     let sid = $("#stuid").val();
-    let nm = $("#nameid").val();
+    let nm = $("#autocomplete").val();
     let dt = $("#dateid").val();
     let wt = $("#weightid").val();
     let pr = $("#priceid").val();
@@ -97,7 +97,7 @@ $("tbody").on("click",".btn-edit",function(){
         success:function(data){
             // console.log(data)
             $("#stuid").val(data.id);
-            $("#nameid").val(data.name);
+            $("#autocomplete").val(data.name);
             $("#dateid").val(data.date);
             $("#cityid").val(data.city);
             $("#weightid").val(data.weight);
@@ -107,5 +107,17 @@ $("tbody").on("click",".btn-edit",function(){
     })
 
 })
+
+$( function() {
+    $( "#autocomplete" ).autocomplete({
+        source: "{% url 'autocomplete_names' %}"
+    });
+  });
+
+$( function() {
+    $( "#cityid" ).autocomplete({
+        source: "{% url 'autocomplete_city' %}"
+    });
+  });
 
 </script>

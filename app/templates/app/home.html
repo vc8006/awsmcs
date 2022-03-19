@@ -54,7 +54,7 @@
             <th scope="col">NAME</th>
             <th scope="col">WEIGHT (Kg)</th>
             <th scope="col">CITY</th>
-            <th scope="col">PRICE</th>
+            <th scope="col">CHARGES</th>
             <th scope="col">ACTION</th>
         </tr>
     </thead>
@@ -94,8 +94,38 @@
     <input type="button" class="btn btn-success my-2" id="btnsave" value="Save">
     <button type="reset" class="btn btn-info my-2">Reset Form</button>
   </form> 
-<!-- <button id="clear" class="btn btn-info">Clear</button> -->
-<div id="msg" class="alert alert-success" style="display: none;"></div>
+  <!-- <button id="clear" class="btn btn-info">Clear</button> -->
+  <div id="msg" class="alert alert-success" style="display: none;"></div>
+  <!-- <div id="autocomplete" class="autocomplete">
+    <input />
+    <ul class="autocomplete-result-list"></ul>
+  </div>
+
+  <script>
+    new Autocomplete('#autocomplete',{
+    search : input => {
+        console.log(input)
+        const url = `/1/get-suggestions/?search=${input}`
+        return new Promise(resolve => {
+            fetch(url)
+                .then(response=>response.json())
+                .then(data => {
+                    console.log(data.payload)
+                    resolve(data.payload)
+                })
+        })
+    },
+    renderResult : (result,props) => {
+        console.log(props)
+        let group = ''
+        if(result.index % 3 == 0){
+            group = `<li class="group">Group</li>`
+        }
+        return `${group} <li ${props}> <div class="wiki-title"> ${result.name} </div> </li> `
+    }
+})
+  </script> -->
+
 {% endblock %}
 
 {% block book %}
@@ -109,7 +139,7 @@
             <th scope="col">NAME</th>
             <th scope="col">WEIGHT (Kg)</th>
             <th scope="col">CITY</th>
-            <th scope="col">PRICE</th>
+            <th scope="col">CHARGES</th>
             <th scope="col">ACTION</th>
         </tr>
     </thead>

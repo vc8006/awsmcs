@@ -9,7 +9,7 @@ class StudentRegistration(forms.ModelForm):
             # 'date':forms.DateInput(attrs={'class':'form-control','id':'dateid'}),
             'date': forms.DateInput(attrs={'type': 'date','class':'form-control','id':'dateid'}),
             'docket_no':forms.TextInput(attrs={'class':'form-control','id':'docket_noid'}),
-            'name':forms.TextInput(attrs={'class':'form-control','id':'nameid'}),
+            'name':forms.TextInput(attrs={'class':'form-control autocomplete','id':'autocomplete'}),
             'weight':forms.TextInput(attrs={'class':'form-control','id':'weightid'}),
             'city':forms.TextInput(attrs={'class':'form-control','id':'cityid'}),
             'price':forms.TextInput(attrs={'class':'form-control','id':'priceid'}),
