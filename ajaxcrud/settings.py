@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-czz$bbbu+w%gps67bi=%(ihjjmn2_-g_f&0co*!j4_g!q!vt%j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['44.201.196.113','localhost']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -76,23 +76,34 @@ WSGI_APPLICATION = 'ajaxcrud.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'awsmcs',
-        'HOST' : 'database.ckjmdcb6l4do.us-east-1.rds.amazonaws.com',
-        'USER' : 'vcadmin',
+        'NAME': 'vedantVC8006$awsmcs',
+        'HOST' : 'vedantVC8006.mysql.pythonanywhere-services.com',
+        'USER' : 'vedantVC8006',
         'PASSWORD' : 'vedant8109181921',
         'PORT' : '3306',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'awsmcs',
+#         'HOST' : 'database.ckjmdcb6l4do.us-east-1.rds.amazonaws.com',
+#         'USER' : 'vcadmin',
+#         'PASSWORD' : 'vedant8109181921',
+#         'PORT' : '3306',
+#     }
+# }
 
 # import dj_database_url
 # db_from_env = dj_database_url.config(conn_max_age=600)
@@ -147,8 +158,8 @@ LOGIN_URL = 'login'
 #email settings
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'vedchourasia08@gmail.com'
-EMAIL_HOST_PASSWORD = 'pbcwgfkwsehtkhiv'
+EMAIL_HOST_USER = 'sendhwamadhurcourierservices@gmail.com'
+EMAIL_HOST_PASSWORD = 'nvdhvsykhfpnqlan'
 EMAIL_USE_TLS = True
 # DATE_INPUT_FORMATS = ['%d-%m-%y']
 # EMAIL_USE_SSL = False

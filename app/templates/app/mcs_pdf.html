@@ -9,10 +9,10 @@
 
     <!-- Bootstrap CSS -->
 
-    <style>                               
-                                       
-:root {                                     
-  --bs-blue: #0d6efd;                 
+    <style>
+
+:root {
+  --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
   --bs-pink: #d63384;
@@ -330,9 +330,10 @@ body {
             <div style="color: darkblue;" class="col-8"><b> Party Name: <span style="color: black;">{{name}}</span> </b></div>
             <div style="color: darkblue;" class="col-4"><b> Date: <span style="color: black;">{{date|date:'Y-m-d'}} </span></b></div>
             <div style="color: darkblue;" class="col-4"><b> Bill no: <span style="color: black;">{{billno}} </span></b></div>
+            <div style="color: darkblue;" class="col-4"><b> GST no: <span style="color: black;"> 23AZTPC7446G2Z6 </span></b></div>
         </div>
         <table class="table table-bordered border-primary mt-3 text-center pt-2" style="border: 1px solid darkblue;" >
-          <thead style="border: 1px solid darkblue;">  
+          <thead style="border: 1px solid darkblue;">
           <tr>
                 <th style="color: darkblue;">DATE</th>
                 <th style="color: darkblue;width: 50%;">C.N No.</th>
@@ -354,7 +355,7 @@ body {
           <td style="color: black; border-left: 1px solid darkblue;border-right: 1px solid darkblue;"></td>
         </tr>
         {% endfor %}
-        <tr style="height: 35px; border-bottom: none;border-top: none;"> 
+        <tr style="height: 35px; border-bottom: none;border-top: none;">
           <td style="color: darkblue;"></td>
           <td style="color: black;width: 50%;">Total</td>
           <td style="color: black;"> {{total}} </td>
@@ -369,7 +370,7 @@ body {
       <td style="color: black;width: 50%;">SGST 9%</td>
       <td style="color: black;"> {{sgst}} </td>
   </tr>
-        
+
           </tbody>
           <tfoot>
             <tr style="height: 35px;">
@@ -384,20 +385,20 @@ body {
 Payments Deposited by RTGS NEFT in Favour of Madhur Courier Services
 A/c No.2053881152 Central Bank of India IFS Code CBIN0283521 SENDHWA
 </b></pre>
-      
+
         <div style="color: darkblue; text-align: right;">
           For: Madhur Courier
-        </div>       
+        </div>
     </div>
-    <div> 
-      <pdf:nextpage /> 
-    </div> 
+    <div>
+      <pdf:nextpage />
+    </div>
 
 <!-- all bill pages here from -->
 
 
 {% for key,value in all_booking.items %}
-            
+
   {% if forloop.counter == total_page %}
             <div class="table-container" style="overflow-x:auto">
               <table class="table table-bordered p-2" style="border: 1px solid black;">
@@ -413,10 +414,10 @@ A/c No.2053881152 Central Bank of India IFS Code CBIN0283521 SENDHWA
                     </tr>
                 </thead>
             <tbody>
-      {% for key2,value2 in value.items %}  
+      {% for key2,value2 in value.items %}
           {% if key2 == 'filedata' %}
               {% for item in value2 %}
-              <tr>                  
+              <tr>
                 <td>{{forloop.counter}}</td>
                 <td>{{item.date|date:'Y-m-d'}}</td>
                 <td>{{item.docket_no}}</td>
@@ -450,10 +451,10 @@ A/c No.2053881152 Central Bank of India IFS Code CBIN0283521 SENDHWA
                     </tr>
                 </thead>
               <tbody>
-                {% for key2,value2 in value.items %}  
+                {% for key2,value2 in value.items %}
                 {% if key2 == 'filedata' %}
                     {% for item in value2 %}
-                    <tr>                  
+                    <tr>
                       <td>{{forloop.counter}}</td>
                       <td>{{item.date|date:'Y-m-d'}}</td>
                       <td>{{item.docket_no}}</td>
@@ -471,10 +472,10 @@ A/c No.2053881152 Central Bank of India IFS Code CBIN0283521 SENDHWA
                 </div>
                 {% endif %}
             {% endfor %}
-  {% endif %}  
-    <div> 
-      <pdf:nextpage /> 
-    </div> 
+  {% endif %}
+    <div>
+      <pdf:nextpage />
+    </div>
 {% endfor %}
   </body>
 </html>

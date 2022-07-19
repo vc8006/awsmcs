@@ -63,13 +63,13 @@ def autocomplete_city(request):
     data = list()
     return JsonResponse(data,safe=False)
 
-        
+
 def export_csv(request):
     mail= EmailMessage(
                 'backup on ' + str(datetime.now()), #subject
                 'yeh data hai aaj tak ka', #message
-                'vedchourasia08@gmail.com', #from email
-                ['vedantchourasia08@gmail.com'], #to mail
+                'sendhwamadhurcourierservices@gmail.com', #from email
+                ['vedchourasia08@gmail.com','yogeshwar1234chourasia@gmail.com','mmanojchourasia43@gmail.com','yogeshwar.chourasia23@gmail.com'], #to mail
             )
 
     for book in Bookings.objects.all():
@@ -211,7 +211,7 @@ def home(request,id):
                 summary_data.append(str_for_cnote)
                 summary_data.append(total_price)
                 summary_dict[temp_c] = summary_data
-            # print(final_dict)        
+            # print(final_dict)
             # print(summary_dict)
             summary_row = 16 - len(summary_dict)
             total = grand_total
@@ -315,7 +315,7 @@ def download_old(request,id,billno):
         summary_data.append(str_for_cnote)
         summary_data.append(total_price)
         summary_dict[temp_c] = summary_data
-    # print(final_dict)        
+    # print(final_dict)
     # print(summary_dict)
     summary_row = 16 - len(summary_dict)
     total = grand_total
@@ -364,7 +364,7 @@ def generatebill(request,id):
     paginator = Paginator(old_bills,5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    context = { 
+    context = {
         'ids':id,
         'old_bills':old_bills,
         'book':book,
@@ -434,7 +434,7 @@ def generatebill(request,id):
                 summary_data.append(str_for_cnote)
                 summary_data.append(total_price)
                 summary_dict[temp_c] = summary_data
-            # print(final_dict)        
+            # print(final_dict)
             # print(summary_dict)
             summary_row = 16 - len(summary_dict)
             total = grand_total
@@ -507,7 +507,7 @@ def save_data(request,id):
             weight = request.POST['weight']
             docket_no = request.POST['docket_no']
             date = request.POST['date']
-            price = request.POST['price']          
+            price = request.POST['price']
             sn = Bookings.objects.get(id=id)
             sno = sn.s_no
             if(sid == ''):
@@ -518,7 +518,7 @@ def save_data(request,id):
             else:
                 usr = User(id = sid,name=name,city=city,weight=weight,docket_no=docket_no,date=date,price=price,booking_id=id,sno=sno)
             usr.save()
-            data = User.objects.values().filter(booking__id=id).order_by('-id')[:5]                                                                                                                                                                                                         
+            data = User.objects.values().filter(booking__id=id).order_by('-id')[:5]
             # print(data)
             mydata = list(data)
             return JsonResponse({'status':'Save','mydata':mydata,'ids':id})
